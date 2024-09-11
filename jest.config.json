@@ -1,0 +1,6 @@
+{
+  "transform": {
+    "^.+\\.[t|j]s?$": "babel-jest"
+  },
+  "transformIgnorePatterns": []
+}
