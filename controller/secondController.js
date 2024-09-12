@@ -9,5 +9,5 @@ export const secondController = async (req, res) => {
  };
 
 function messagePrinter() {
-    return {"message":"this is a test2"}
+    return {"message":"this is a test2000"}
 }
