@@ -9,7 +9,7 @@ const app = express();
 app.use(route1);
 app.use(route2);
 // app.get('/', myRouteHandler)
-const PORT = 3000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Running on PORT ${PORT}`);
 })
