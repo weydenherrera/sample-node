@@ -8,11 +8,11 @@ trigger:
 
 variables: 
   ## Add this under variables section in the pipeline
-  azureSubscription: Pay-As-You-Go
-  appName: weydz-node-docker
-  containerRegistry: index.docker.io
+  azureSubscription: 'Pay-As-You-Go'
+  appName: 'weydz-node-docker'
+  containerRegistry: 'index.docker.io'
   dockerRegistryServiceConnection: '4fa4efbc-59af-4c0b-8637-1d5bf7f268fc'
-  imageRepository: weydenherrera/sample-node
+  imageRepository: 'weydenherrera/sample-node'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: 'latest'
 
