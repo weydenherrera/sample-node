@@ -36,13 +36,6 @@ pool:
               docker buildx build --platform linux/arm64/v8,linux/amd64 -t weydenherrera/sample-node:$(tag) .
               docker push weydenherrera/sample-node:$(tag)
             displayName: 'npm install and build'
-  - stage: deploy
-    displayName: Deploy
-    dependsOn: installNode
-    jobs:
-      - job: deployAppService
-        displayName: Deploy to App Service
-        steps:
           - task: AzureWebAppContainer@1
             displayName: 'Azure Web App on Container Deploy'
             inputs:
