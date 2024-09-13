@@ -38,6 +38,7 @@ pool:
             displayName: 'npm install and build'
   - stage: deploy
     displayName: Deploy
+    dependsOn: build
     jobs:
       - job: deploy to app service
         displayName: Deploy to App Service
