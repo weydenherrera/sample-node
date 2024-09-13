@@ -4,7 +4,7 @@ export const secondController = async (req, res) => {
  };
 
  export const processController = async (req, res) => {
-    const response = {"username": "weyden-azure-build20240913"}
+    const response = {"username": "weyden-azure-build20240913-withbuildnumber"}
     res.json(response);
  };
 

@@ -14,7 +14,7 @@ variables:
   dockerRegistryServiceConnection: '4fa4efbc-59af-4c0b-8637-1d5bf7f268fc'
   imageRepository: 'weydenherrera/sample-node'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
-  tag: 'latest'
+  tag: '$(Build.BuildId)'
 
 pool:
   name: Default
@@ -29,7 +29,7 @@ steps:
 - script: |
     npm install
     docker buildx build --platform linux/arm64/v8,linux/amd64 -t weydenherrera/sample-node:latest .
-    docker push weydenherrera/sample-node:latest
+    docker push weydenherrera/sample-node:$(tag)
   displayName: 'npm install and build'
 
 - task: AzureWebAppContainer@1
