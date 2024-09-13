@@ -28,7 +28,7 @@ steps:
 
 - script: |
     npm install
-    docker buildx build --platform linux/arm64/v8,linux/amd64 -t weydenherrera/sample-node:latest .
+    docker buildx build --platform linux/arm64/v8,linux/amd64 -t weydenherrera/sample-node:$(tag) .
     docker push weydenherrera/sample-node:$(tag)
   displayName: 'npm install and build'
 
