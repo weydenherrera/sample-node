@@ -20,21 +20,31 @@ pool:
   name: Default
   vmImage: ubuntu-latest
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '20.x'
-  displayName: 'Install Node.js'
-
-- script: |
-    npm install
-    docker buildx build --platform linux/arm64/v8,linux/amd64 -t weydenherrera/sample-node:$(tag) .
-    docker push weydenherrera/sample-node:$(tag)
-  displayName: 'npm install and build'
-
-- task: AzureWebAppContainer@1
-  displayName: 'Azure Web App on Container Deploy'
-  inputs:
-      azureSubscription: $(azureSubscription)
-      appName: $(appName)
-      containers: $(containerRegistry)/$(imageRepository):$(tag)
+  stages:
+  - stage: build
+    displayName: Build
+    jobs:
+      - job: install node
+        displayName: Install Nodejs
+        steps:
+          - task: NodeTool@0
+            displayName: 'Install Node.js'
+            inputs:
+              versionSpec: '20.x'
+          - script: |
+              npm install
+              docker buildx build --platform linux/arm64/v8,linux/amd64 -t weydenherrera/sample-node:$(tag) .
+              docker push weydenherrera/sample-node:$(tag)
+            displayName: 'npm install and build'
+  - stage: deploy
+    displayName: Deploy
+    jobs:
+      - job: deploy to app service
+        displayName: Deploy to App Service
+        steps:
+          - task: AzureWebAppContainer@1
+            displayName: 'Azure Web App on Container Deploy'
+            inputs:
+              azureSubscription: $(azureSubscription)
+              appName: $(appName)
+              containers: $(containerRegistry)/$(imageRepository):$(tag)
