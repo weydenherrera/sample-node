@@ -20,9 +20,8 @@ pool:
   name: Default
   vmImage: ubuntu-latest
 
-  stages:
+stages:
   - stage: build
-    dependsOn: 
     displayName: Build
     jobs:
       - job: installNode
