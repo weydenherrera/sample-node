@@ -24,7 +24,7 @@ pool:
   - stage: build
     displayName: Build
     jobs:
-      - job: install node
+      - job: installNode
         displayName: Install Nodejs
         steps:
           - task: NodeTool@0
@@ -38,9 +38,9 @@ pool:
             displayName: 'npm install and build'
   - stage: deploy
     displayName: Deploy
-    dependsOn: build
+    dependsOn: installNode
     jobs:
-      - job: deploy to app service
+      - job: deployAppService
         displayName: Deploy to App Service
         steps:
           - task: AzureWebAppContainer@1
