@@ -22,6 +22,7 @@ pool:
 
   stages:
   - stage: build
+    dependsOn: 
     displayName: Build
     jobs:
       - job: installNode
